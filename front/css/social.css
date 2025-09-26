@@ -1,0 +1,89 @@
+/* --- Estilos da Página da Comunidade (Social) --- */
+
+.social-header {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.social-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 8px;
+}
+
+.social-header p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+}
+
+.social-feed {
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+.post-card {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    gap: 12px;
+}
+
+.post-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.post-author {
+    font-weight: 600;
+}
+
+.post-timestamp {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.post-body p {
+    padding: 0 15px 15px 15px;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.post-image {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    display: block;
+}
+
+.post-actions {
+    display: flex;
+    border-top: 1px solid var(--border-color);
+}
+
+.action-btn {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 15px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.action-btn:hover {
+    background-color: var(--bg-primary);
+}
+
+.action-btn:first-child {
+    border-right: 1px solid var(--border-color);
+}

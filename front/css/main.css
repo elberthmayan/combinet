@@ -1,0 +1,533 @@
+/*
+ * =========================================
+ * ESTILOS PRINCIPAIS DA APLICAÇÃO (main.css)
+ * =========================================
+ */
+@import url('egg.css');
+@import url('favorites.css');
+@import url('social.css');
+@import url('card.css');
+@import url('loading.css');
+
+
+/* -------------------
+ * TEMAS E VARIÁVEIS GLOBAIS
+ * ------------------- */
+:root {
+    --bg-primary: #f0f2f5;
+    --bg-secondary: #ffffff;
+    --text-primary: #1c1e21;
+    --text-secondary: #606770;
+    --accent-primary: #e67e22;
+    --accent-hover: #d35400;
+    --border-color: #dddfe2;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --tag-bg: #ecf0f1;
+    --tag-text: #2c3e50;
+}
+
+body.dark-theme {
+    --bg-primary: #18191a;
+    --bg-secondary: #242526;
+    --text-primary: #e4e6eb;
+    --text-secondary: #b0b3b8;
+    --accent-primary: #e67e22;
+    --accent-hover: #f39c12;
+    --border-color: #393a3b;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --tag-bg: #3a3b3c;
+    --tag-text: #e4e6eb;
+}
+
+/* -------------------
+ * LAYOUT GERAL
+ * ------------------- */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding-top: 60px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+main {
+    flex-grow: 1;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+/* -------------------
+ * HEADER E NAVEGAÇÃO
+ * ------------------- */
+.navbar {
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px var(--shadow-color);
+    padding: 0 20px;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+/* NOVO: Container para agrupar itens da esquerda */
+.navbar__left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.navbar__brand {
+    font-family: 'Pacifico', cursive;
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: var(--accent-primary);
+    text-decoration: none;
+    z-index: 1012;
+    padding-bottom: 5px;
+}
+
+.navbar__links--desktop a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 4px;
+    margin: 0 12px;
+    border-bottom: 3px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.navbar__links--desktop a:hover, .navbar__links--desktop a.active {
+    color: var(--accent-primary);
+    border-bottom-color: var(--accent-primary);
+}
+
+.navbar__actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.navbar__user-icon {
+    color: var(--text-secondary);
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.navbar__user-icon:hover {
+    color: var(--accent-primary);
+}
+
+.navbar__toggle {
+    display: none; /* Escondido por padrão (visível no mobile) */
+}
+
+.navbar__links--mobile {
+    display: none;
+}
+
+
+/* -------------------
+ * PÁGINA COMBINAR
+ * ------------------- */
+.combiner-container {
+    background: var(--bg-secondary);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    text-align: center;
+}
+.ingredient-form {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.ingredient-form input {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+#ingredient-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin: 20px 0;
+    min-height: 30px;
+}
+.ingredient-tag {
+    background-color: var(--tag-bg);
+    color: var(--tag-text);
+    padding: 8px 12px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+}
+.ingredient-tag .remove-tag {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+#results-container h2 {
+    border-bottom: 2px solid var(--accent-primary);
+    display: inline-block;
+    padding-bottom: 5px;
+    margin-bottom: 25px;
+}
+
+/* -------------------
+ * MODAIS
+ * ------------------- */
+.recipe-modal, .settings-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn .3s ease;
+}
+.recipe-modal.is-visible, .settings-modal.is-visible {
+    display: flex;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0
+    }
+    to {
+        opacity: 1
+    }
+}
+.modal-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .6);
+    backdrop-filter: blur(5px);
+}
+.modal-content {
+    position: relative;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border-radius: 12px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .2);
+    animation: slideUp .4s ease-out
+}
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1
+    }
+}
+.recipe-modal .modal-content {
+    max-width: 700px;
+    display: flex;
+    flex-direction: column
+}
+.settings-modal .modal-content {
+    max-width: 500px;
+    padding: 25px
+}
+@media (min-width:768px) {
+    .recipe-modal .modal-content {
+        flex-direction: row
+    }
+}
+.modal-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px 12px 0 0
+}
+@media (min-width:768px) {
+    .modal-image {
+        width: 40%;
+        height: auto;
+        border-radius: 12px 0 0 12px
+    }
+}
+.modal-text {
+    padding: 25px
+}
+.modal-text ul {
+    list-style-type: none;
+    padding: 0
+}
+.modal-text li {
+    padding: 4px 0
+}
+.modal-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: rgba(0, 0, 0, .3);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10
+}
+.modal-content h2 {
+    margin-top: 0;
+    margin-bottom: 20px
+}
+#settings-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px
+}
+.form-group {
+    display: flex;
+    flex-direction: column
+}
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: var(--text-secondary)
+}
+.form-group input {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: var(--bg-primary);
+    color: var(--text-primary)
+}
+
+/* -------------------
+ * COMPONENTES DE UI
+ * ------------------- */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px
+}
+.btn {
+    background-color: var(--accent-primary);
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color .2s;
+    font-size: 1rem
+}
+.btn:hover {
+    background-color: var(--accent-hover)
+}
+
+/* -------------------
+ * DROPDOWN DE PERFIL
+ * ------------------- */
+.user-dropdown {
+    position: absolute;
+    top: 65px;
+    right: 20px;
+    background-color: var(--bg-secondary);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    border: 1px solid var(--border-color);
+    width: 220px;
+    z-index: 1015;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity .2s ease, transform .2s ease, visibility .2s
+}
+.user-dropdown.is-active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0)
+}
+.user-greeting {
+    padding: 15px;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border-color)
+}
+.user-dropdown-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: 0 0;
+    border: none;
+    width: 100%;
+    text-align: left;
+    padding: 12px 15px;
+    font-size: .95rem;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: background-color .2s
+}
+.user-dropdown-btn:hover {
+    background-color: var(--bg-primary)
+}
+.user-dropdown-btn svg {
+    color: var(--text-secondary)
+}
+
+/* -------------------
+ * RODAPÉ
+ * ------------------- */
+.footer {
+    text-align: center;
+    padding: 20px;
+    font-size: .9rem;
+    color: var(--text-secondary);
+    border-top: 1px solid var(--border-color);
+    margin-top: 40px
+}
+
+
+/* =========================================
+ * PONTO DE VIRADA: MODO RESPONSIVO (MOBILE)
+ * ========================================= */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0 15px;
+        /* Menos espaçamento nas laterais */
+    }
+
+    /* Esconde os links do meio no desktop */
+    .navbar__links--desktop {
+        display: none;
+    }
+
+    /* Mostra o botão hamburguer */
+    .navbar__toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 25px;
+        height: 25px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 1011;
+    }
+    .navbar__toggle span {
+        width: 25px;
+        height: 3px;
+        background-color: var(--text-primary);
+        border-radius: 10px;
+        transition: all 0.3s linear;
+        position: relative;
+        transform-origin: 1px;
+    }
+
+    /* Animação do hamburguer para 'X' quando ativo */
+    .navbar__toggle.is-active span:nth-child(1) {
+        transform: rotate(45deg);
+    }
+    .navbar__toggle.is-active span:nth-child(2) {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    .navbar__toggle.is-active span:nth-child(3) {
+        transform: rotate(-45deg);
+    }
+
+    /* Estilo do menu mobile que aparece */
+    .navbar__links--mobile {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--bg-secondary);
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        padding: 10px 0;
+        box-shadow: 0 4px 6px var(--shadow-color);
+        transform: translateY(-150%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 1005;
+    }
+    .navbar__links--mobile.is-open {
+        transform: translateY(0);
+    }
+    .navbar__links--mobile a {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 15px;
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-weight: 600;
+        width: 100%;
+        border-bottom: 1px solid var(--border-color);
+    }
+    .navbar__links--mobile a:last-of-type {
+        border-bottom: none;
+    }
+    .navbar__links--mobile a.active {
+        background-color: var(--bg-primary);
+        color: var(--accent-primary);
+    }
+
+    /* Ajustes Gerais */
+    .container {
+        padding: 0 15px;
+        margin-top: 15px
+    }
+    .combiner-container {
+        padding: 15px
+    }
+    .ingredient-form {
+        flex-direction: column
+    }
+    .social-header h1 {
+        font-size: 2rem
+    }
+    .social-header p {
+        font-size: 1rem
+    }
+    .modal-content {
+        width: 95%;
+        max-height: 85vh
+    }
+    .modal-image {
+        height: 200px
+    }
+}
