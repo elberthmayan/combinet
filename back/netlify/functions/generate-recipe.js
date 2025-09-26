@@ -20,8 +20,8 @@ exports.handler = async function(event, context) {
             return { statusCode: 500, body: 'Server error: API key not configured.'};
         }
         
-        // ATUALIZAÇÃO: Usando o nome completo e estável do modelo.
-        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-001:generateContent?key=${API_KEY}`;
+        // ATUALIZAÇÃO FINAL: Usando o nome completo do modelo mais recente (gemini-1.5-flash-preview-0514).
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-preview-0514:generateContent?key=${API_KEY}`;
         
         // 4. Montamos o prompt para a IA.
         const prompt = `
@@ -71,4 +71,3 @@ exports.handler = async function(event, context) {
         };
     }
 };
-
