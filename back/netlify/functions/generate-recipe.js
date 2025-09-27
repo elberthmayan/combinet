@@ -1,6 +1,6 @@
-// CORREÇÃO: Importamos o 'node-fetch' usando require.
-// A Netlify vai ler o package.json e instalar este pacote automaticamente.
-const fetch = require('node-fetch');
+// CORREÇÃO FINAL: Removemos a dependência 'node-fetch'.
+// A Netlify usa uma versão moderna do Node.js que já inclui o 'fetch' globalmente,
+// tornando o pacote externo desnecessário.
 
 // A função 'handler' é como o nosso porteiro. A Netlify vai chamar esta função.
 exports.handler = async function(event, context) {
@@ -38,7 +38,7 @@ exports.handler = async function(event, context) {
             - "preparation": o modo de preparo passo a passo (string).
         `;
 
-        // 5. Fazemos a chamada para a API do Gemini.
+        // 5. Fazemos a chamada para a API do Gemini (usando o fetch nativo).
         const response = await fetch(API_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
