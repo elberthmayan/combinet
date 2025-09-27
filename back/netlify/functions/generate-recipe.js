@@ -1,7 +1,3 @@
-// CORREÇÃO FINAL: Removemos a dependência 'node-fetch'.
-// A Netlify usa uma versão moderna do Node.js que já inclui o 'fetch' globalmente,
-// tornando o pacote externo desnecessário.
-
 // A função 'handler' é como o nosso porteiro. A Netlify vai chamar esta função.
 exports.handler = async function(event, context) {
     // 1. Verificamos se o método da requisição é POST. Só aceitamos POST.
@@ -10,7 +6,7 @@ exports.handler = async function(event, context) {
     }
 
     try {
-        // 2. Pegamos os ingredientes que o front-end enviou.
+        // 2. Pegamos nos ingredientes que o front-end enviou.
         const { ingredients } = JSON.parse(event.body);
         if (!ingredients || !Array.isArray(ingredients) || ingredients.length === 0) {
             return { statusCode: 400, body: 'Bad Request: ingredients is required and must be an array.' };
@@ -18,13 +14,14 @@ exports.handler = async function(event, context) {
 
         const ingredientsList = ingredients.join(', ');
 
-        // 3. Pegamos a chave secreta da API. Ela NÃO está no código.
+        // 3. Pegamos na chave secreta da API. Ela NÃO está no código.
         const API_KEY = process.env.GEMINI_API_KEY;
         if (!API_KEY) {
             return { statusCode: 500, body: 'Server error: API key not configured.'};
         }
         
-        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${API_KEY}`;
+        // CORREÇÃO: Atualizamos para o modelo mais recente e recomendado.
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${API_KEY}`;
         
         // 4. Montamos o prompt para a IA.
         const prompt = `
@@ -54,6 +51,9 @@ exports.handler = async function(event, context) {
             console.error('Erro da API Gemini:', data);
             return { statusCode: response.status, body: JSON.stringify(data) };
         }
+
+        // Adicionado um log para ver a resposta exata da API
+        console.log("Resposta da API recebida:", data.candidates[0].content.parts[0].text);
 
         const recipeJsonText = data.candidates[0].content.parts[0].text;
         
