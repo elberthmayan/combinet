@@ -3,8 +3,8 @@
 [build]
   # Onde estão os arquivos do seu site (o front-end)
   publish = "front"
-  # Onde estão os arquivos do seu "porteiro" (as funções)
-  functions = "netlify/functions"
+  # CORREÇÃO: Apontamos para o diretório correto do back-end.
+  functions = "back/netlify/functions"
 
 # Regra mágica: Quando o site pedir por "/api/algo",
 # a Netlify vai, secretamente, chamar nosso porteiro chamado "algo".
@@ -12,4 +12,3 @@
   from = "/api/*"
   to = "/.netlify/functions/:splat"
   status = 200
-
