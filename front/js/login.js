@@ -80,7 +80,8 @@ document.addEventListener('DOMContentLoaded', () => {
             
             scene.addEventListener('transitionend', function onTransitionEnd(event) {
                 if (event.propertyName === 'transform') {
-                   window.location.href = 'front/app.html';
+                   // CORREÇÃO: O caminho correto após o deploy é '/app.html'
+                   window.location.href = '/app.html';
                    scene.removeEventListener('transitionend', onTransitionEnd);
                 }
             });
@@ -93,4 +94,3 @@ document.addEventListener('DOMContentLoaded', () => {
         form.addEventListener('submit', handleFormSubmit);
     });
 });
-
