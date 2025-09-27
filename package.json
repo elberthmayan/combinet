@@ -1,9 +1,7 @@
-={
+{
   "name": "combinet-backend",
   "version": "1.0.0",
   "description": "Funções Netlify para a aplicação Combinet",
   "dependencies": {
     "node-fetch": "^2.7.0"
   }
-}
-
