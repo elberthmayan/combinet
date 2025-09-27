@@ -1,3 +1,7 @@
+// CORREÇÃO: Importamos o 'node-fetch' usando require.
+// A Netlify vai ler o package.json e instalar este pacote automaticamente.
+const fetch = require('node-fetch');
+
 // A função 'handler' é como o nosso porteiro. A Netlify vai chamar esta função.
 exports.handler = async function(event, context) {
     // 1. Verificamos se o método da requisição é POST. Só aceitamos POST.
@@ -20,7 +24,6 @@ exports.handler = async function(event, context) {
             return { statusCode: 500, body: 'Server error: API key not configured.'};
         }
         
-        // ATUALIZAÇÃO DE EMERGÊNCIA: Usando o modelo mais estável e garantido (gemini-pro).
         const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${API_KEY}`;
         
         // 4. Montamos o prompt para a IA.
@@ -36,8 +39,6 @@ exports.handler = async function(event, context) {
         `;
 
         // 5. Fazemos a chamada para a API do Gemini.
-        const fetch = (await import('node-fetch')).default;
-
         const response = await fetch(API_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
