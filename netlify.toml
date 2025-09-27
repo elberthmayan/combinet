@@ -5,6 +5,8 @@
   publish = "front"
   # CORREÇÃO: Apontamos para o diretório correto do back-end.
   functions = "back/netlify/functions"
+  # NOVO: Força a instalação de dependências a partir do package.json da raiz
+  command = "npm install"
 
 # Regra mágica: Quando o site pedir por "/api/algo",
 # a Netlify vai, secretamente, chamar nosso porteiro chamado "algo".
