@@ -22,7 +22,8 @@ exports.handler = async function(event, context) {
             return { statusCode: 500, body: JSON.stringify({ error: 'A configuração do servidor está incompleta. A chave da API não foi encontrada.' }) };
         }
         
-        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro-latest:generateContent?key=${API_KEY}`;
+        // CORREÇÃO: O nome do modelo foi atualizado de 'gemini-1.5-pro-latest' para 'gemini-pro'.
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${API_KEY}`;
         
         // 4. Montamos o prompt para a IA.
         const prompt = `
@@ -72,4 +73,3 @@ exports.handler = async function(event, context) {
         };
     }
 };
-
