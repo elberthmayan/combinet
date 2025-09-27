@@ -1,4 +1,4 @@
-// A função 'handler' é como o nosso porteiro. A Netlify vai chamar essa função.
+// A função 'handler' é como o nosso porteiro. A Netlify vai chamar esta função.
 exports.handler = async function(event, context) {
     // 1. Verificamos se o método da requisição é POST. Só aceitamos POST.
     if (event.httpMethod !== 'POST') {
