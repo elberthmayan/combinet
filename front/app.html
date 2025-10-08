@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combinet - Sua Geladeira Inteligente</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- ATUALIZAÇÃO: Adicionado versionamento para forçar a limpeza de cache -->
+    <link rel="stylesheet" href="css/main.css?v=1.0.2">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css" xintegrity="sha512-hvNR0F/e2Jb1xjIhfzVRrdLJj8L1LFldeVG51vIhbvAKrLS8omC0srrcjAqGwy6K7/v+tNEJEtyhoY7zdeRxdw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <!-- NOVA Tela de Boas-Vindas -->
+    <div id="welcome-splash" class="welcome-splash">
+        <div class="welcome-content">
+            <h1 class="welcome-brand">Combinet</h1>
+            <p id="welcome-message"></p>
+        </div>
+    </div>
+
+    <header id="header-placeholder"></header>
+    <main id="main-content"></main>
+    <div id="toast-container"></div>
+    <footer class="footer">
+        © 2025 Combinet. Todos os direitos reservados.
+    </footer>
+
+    <!-- Biblioteca para gerar PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <!-- Biblioteca para gerar QR Code -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+    
+    <!-- Biblioteca para renderizar HTML em imagem -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <!-- Adicionado Cropper.js SCRIPT -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js" xintegrity="sha512-9KkIqdfN7ipEW6B6k+Aq20PVSAaMVJ3OBqvSJjA/iKsbhCROunjLCsCMyTILDE9MLiSIGNnStreqC8YINFyFBg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- ATUALIZAÇÃO: Adicionado versionamento para forçar a limpeza de cache -->
+    <script type="module" src="js/app.js?v=1.0.2"></script>
+</body>
+</html>

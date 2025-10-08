@@ -1,0 +1,811 @@
+/*
+ * =========================================================
+ * REMAKE 3.0 - PÁGINA DA COMUNIDADE (THE GOURMET CHRONICLE)
+ * Design imersivo, focado em visuais e micro-interações.
+ * =========================================================
+*/
+
+/* --- Estrutura e Cabeçalho --- */
+.social-page-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.social-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--border-color);
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.social-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+.social-header p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin: 5px 0 0 0;
+}
+.social-header .btn {
+    padding: 12px 24px;
+    font-size: 1rem;
+}
+.social-header .btn svg {
+    margin-right: 8px;
+}
+
+/* --- Controles de Ordenação --- */
+.feed-controls {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+}
+.sort-buttons {
+    display: inline-flex;
+    background-color: var(--bg-secondary);
+    border-radius: 25px;
+    padding: 6px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 8px var(--shadow-color);
+}
+.sort-btn {
+    background: none;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.25s ease;
+}
+.sort-btn:hover {
+    color: var(--text-primary);
+}
+.sort-btn.active {
+    background-color: var(--accent-primary);
+    color: white;
+    box-shadow: 0 2px 8px rgba(230, 126, 34, 0.3);
+}
+.sort-btn svg {
+    width: 18px; height: 18px;
+    stroke: currentColor; stroke-width: 2.5; fill: none;
+    stroke-linecap: round; stroke-linejoin: round;
+}
+
+
+/* --- Grid do Feed --- */
+.social-feed-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 30px;
+}
+.feed-empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+}
+.empty-state-icon {
+    width: 80px; height: 80px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background-color: var(--bg-primary);
+    display: flex;
+    align-items: center; justify-content: center;
+    color: var(--text-secondary);
+}
+.feed-empty-state h3 { font-size: 1.5rem; color: var(--text-primary); }
+.feed-empty-state p { color: var(--text-secondary); max-width: 400px; margin: 10px auto 0; line-height: 1.6; }
+
+/* --- Card do Post no Grid --- */
+.post-card {
+    background-color: var(--bg-secondary);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px var(--shadow-color);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    border: 1px solid var(--border-color);
+}
+.post-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px var(--shadow-color);
+}
+.post-card-image-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 75%; /* Proporção 4:3 */
+}
+.post-card-image {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.post-card-author {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px;
+    color: white;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+}
+.post-card-author img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid #fff; }
+.post-card-author .author-name { font-weight: 600; text-shadow: 0 1px 3px #000; }
+.post-card-author .post-timestamp { font-size: 0.8rem; opacity: 0.9; text-shadow: 0 1px 3px #000; }
+
+.post-card-content { padding: 20px; flex-grow: 1; }
+.post-card-title { font-size: 1.3rem; margin: 0 0 10px 0; font-weight: 700;}
+.post-card-body {
+    flex-grow: 1;
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3; 
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.post-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px 20px;
+}
+.post-card-stats { display: flex; gap: 15px; }
+.stat-item {
+    display: flex; align-items: center; gap: 6px;
+    font-weight: 600; color: var(--text-secondary);
+}
+.stat-item svg { width: 18px; height: 18px; fill: var(--text-secondary); }
+.btn-view-more {
+    background: none; border: none;
+    color: var(--accent-primary); font-weight: 600;
+    cursor: pointer; font-size: 0.9rem;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+.btn-view-more:hover {
+    background-color: var(--bg-primary);
+}
+
+/*
+ * =========================================================
+ * MODAL DE DETALHES DO POST (REFINADO)
+ * =========================================================
+*/
+body.modal-open { overflow: hidden; }
+.details-modal {
+    position: fixed; inset: 0; z-index: 2000;
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px; box-sizing: border-box;
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s;
+}
+.details-modal.is-open { opacity: 1; visibility: visible; }
+
+.modal-backdrop {
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    cursor: pointer;
+}
+.details-modal .modal-content {
+    position: relative;
+    width: 100%; max-width: 1200px;
+    height: 90vh; max-height: 850px;
+    border-radius: 20px;
+    background-color: var(--bg-secondary);
+    box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+    transform: scale(0.95);
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+.details-modal.is-open .modal-content { transform: scale(1); }
+
+.modal-header-image {
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    flex-shrink: 0;
+    position: relative;
+}
+.action-btn.close-btn {
+    position: absolute; top: 15px; right: 15px;
+    font-size: 2rem;
+    font-weight: 300;
+    background: rgba(0,0,0,0.4);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px; height: 40px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+}
+.action-btn.close-btn:hover { background: rgba(0,0,0,0.6); transform: rotate(90deg); }
+
+.modal-body-grid {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 30px;
+    padding: 30px;
+    flex-grow: 1;
+    overflow: hidden;
+}
+.main-content-panel, .sidebar-panel {
+    overflow-y: auto;
+    height: 100%;
+    padding-right: 15px; /* For scrollbar */
+}
+/* Custom scrollbar */
+.main-content-panel::-webkit-scrollbar, .sidebar-panel::-webkit-scrollbar { width: 6px; }
+.main-content-panel::-webkit-scrollbar-track, .sidebar-panel::-webkit-scrollbar-track { background: transparent; }
+.main-content-panel::-webkit-scrollbar-thumb, .sidebar-panel::-webkit-scrollbar-thumb { background-color: var(--border-color); border-radius: 10px; }
+
+.post-header-info h1 {
+    font-size: 2.2rem;
+    margin: 0 0 15px;
+}
+.author-info { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.author-info img { width: 45px; height: 45px; border-radius: 50%; object-fit: cover;}
+.author-info div { display: flex; flex-direction: column; }
+.post-body { line-height: 1.7; font-size: 1.05rem; margin: 0 0 30px; color: var(--text-secondary);}
+
+.info-section { margin-bottom: 30px; }
+.info-section h4 { font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary); margin: 0 0 15px; padding-bottom: 10px; border-bottom: 1px solid var(--border-color); font-weight: 700; }
+
+.recipe-list { list-style: none; padding: 0; margin: 0; }
+.recipe-list.ingredients-list li { padding: 10px 5px; border-bottom: 1px solid var(--border-color); font-size: 0.95rem; display: flex; align-items: center; }
+.recipe-list.ingredients-list .bullet { width: 6px; height: 6px; background: var(--accent-primary); border-radius: 50%; margin-right: 12px; }
+.recipe-list.steps-list { counter-reset: steps-counter; }
+.steps-list li { position: relative; padding: 12px 0 12px 45px; line-height: 1.6; counter-increment: steps-counter; }
+.steps-list li:not(:last-child) { border-bottom: 1px solid var(--border-color); }
+.steps-list li::before {
+    content: counter(steps-counter);
+    position: absolute; left: 0; top: 12px;
+    width: 32px; height: 32px;
+    background-color: var(--bg-primary);
+    color: var(--accent-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+}
+
+/* Sidebar Panel */
+.sidebar-action-btn {
+    display: flex; align-items: center; gap: 12px; width: 100%;
+    padding: 12px; border-radius: 8px; font-size: 1rem; font-weight: 600;
+    cursor: pointer; transition: all 0.2s; border: 1px solid var(--border-color);
+    background: var(--bg-primary); color: var(--text-primary);
+    margin-bottom: 10px;
+}
+.sidebar-action-btn:hover { background: var(--bg-secondary); border-color: var(--text-secondary); }
+.sidebar-action-btn svg { width: 22px; height: 22px; fill: currentColor; }
+.sidebar-action-btn.bookmark-btn.active { background: var(--accent-primary); color: white; border-color: var(--accent-primary); }
+.sidebar-action-btn.delete-btn:hover { background: var(--error-color); color: white; border-color: var(--error-color); }
+
+.star-rating-input { display: flex; flex-direction: row-reverse; justify-content: center; gap: 5px; }
+.star-rating-input .star { cursor: pointer; transition: all 0.2s; }
+.star-rating-input .star svg { width: 32px; height: 32px; fill: var(--border-color); stroke: none; transition: all 0.2s; }
+.star-rating-input .star:hover svg, .star-rating-input .star.selected svg, .star-rating-input:hover .star:hover ~ .star svg { fill: #f1c40f; transform: scale(1.1); }
+#rating-feedback { text-align: center; margin-top: 15px; font-weight: 500; color: var(--text-secondary); }
+
+.comments-list { display: flex; flex-direction: column; gap: 15px; margin-bottom: 20px; }
+.comment { display: flex; gap: 10px; }
+.comment-avatar { width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0; object-fit: cover;}
+.comment-body { background: var(--bg-primary); padding: 10px 14px; border-radius: 12px; flex-grow: 1; }
+.comment-author { font-weight: 600; font-size: 0.9rem; }
+.comment-time { font-size: 0.8rem; color: var(--text-secondary); margin-left: 8px; }
+.comment-text { margin: 2px 0 0; font-size: 0.95rem; word-break: break-word; }
+.no-comments { color: var(--text-secondary); text-align: center; padding: 20px; }
+
+.comment-form { display: flex; gap: 10px; align-items: flex-start; }
+.comment-input-avatar { width: 36px; height: 36px; border-radius: 50%; object-fit: cover;}
+.comment-input-wrapper { flex-grow: 1; position: relative; }
+.comment-form input { 
+    width: 100%; border: 1px solid var(--border-color); background: var(--bg-primary); color: var(--text-primary); 
+    border-radius: 20px; padding: 10px 45px 10px 18px; font-size: 0.95rem; outline: none; transition: all 0.2s;
+    box-sizing: border-box;
+}
+.comment-form input:focus { border-color: var(--accent-primary); box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.2); }
+.comment-form button { 
+    position: absolute; right: 4px; top: 4px;
+    background: var(--accent-primary); border: none; color: white; border-radius: 50%; 
+    width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; 
+    cursor: pointer; transition: transform 0.2s;
+}
+.comment-form button:hover { transform: scale(1.1); }
+.comment-form button svg { width: 18px; height: 18px; }
+
+/*
+ * =========================================================
+ * MODAL DE CRIAÇÃO (WIZARD GOURMET)
+ * =========================================================
+*/
+body.modal-open-child { overflow: hidden; }
+.wizard-modal .wizard-container {
+    position: relative;
+    width: 100%;
+    max-width: 680px;
+    background-color: var(--bg-primary);
+    border-radius: 20px;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+    max-height: 700px;
+    transform: scale(0.95);
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    overflow: hidden;
+}
+.wizard-modal.is-open .wizard-container { transform: scale(1); }
+
+/* --- Cabeçalho do Wizard --- */
+.wizard-header {
+    display: flex;
+    flex-wrap: wrap; /* Permite quebrar linha */
+    justify-content: space-between; /* Alinha o título à esquerda e o X à direita */
+    align-items: center;
+    padding: 15px 25px;
+    border-bottom: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+    flex-shrink: 0;
+    row-gap: 15px; /* Espaçamento entre as linhas */
+}
+.wizard-header h2 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+.wizard-steps {
+    width: 100%; /* Ocupa a largura toda para forçar a quebra de linha */
+    order: 3; /* Garante que venha por último na ordem do flex */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centraliza os passos na segunda linha */
+}
+.step-item { display: flex; align-items: center; gap: 8px; color: var(--text-secondary); transition: color 0.3s; }
+.step-icon {
+    width: 32px; height: 32px; border-radius: 50%;
+    border: 2px solid var(--border-color);
+    color: var(--text-secondary);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.9rem;
+    transition: all 0.3s;
+}
+.step-icon svg { width: 18px; height: 18px; }
+.step-label { font-weight: 600; font-size: 0.9rem; }
+.step-item.active .step-icon { border-color: var(--accent-primary); background-color: var(--accent-primary); color: white; }
+.step-item.active .step-label { color: var(--text-primary); }
+.step-item.completed .step-icon { border-color: var(--success-color); background-color: var(--success-color); color: white; }
+.step-connector { width: 40px; height: 2px; background-color: var(--border-color); margin: 0 10px; }
+
+.wizard-header .close-btn {
+    position: static;
+    background: none;
+    color: var(--text-secondary);
+    font-size: 1.8rem;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    order: 2; /* Garante que fique depois do título */
+}
+.wizard-header .close-btn:hover {
+    background-color: var(--bg-primary);
+    color: var(--accent-primary);
+    transform: rotate(90deg);
+}
+
+/* --- Conteúdo do Wizard --- */
+.wizard-content { flex-grow: 1; position: relative; overflow: hidden; }
+.wizard-step {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    padding: 30px; box-sizing: border-box;
+    opacity: 0; transform: translateX(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    visibility: hidden;
+    display: flex; align-items: center; justify-content: center;
+}
+.wizard-step.active { opacity: 1; transform: translateX(0); visibility: visible; }
+.step-content-inner { text-align: center; width: 100%; max-width: 450px; }
+.step-content-inner h3 { margin: 0 0 10px; font-size: 1.8rem; }
+.step-content-inner p { margin: 0 auto 25px; color: var(--text-secondary); max-width: 400px; }
+
+.wizard-recipe-display {
+    min-height: 60px;
+    border: 2px dashed var(--border-color);
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: var(--bg-secondary);
+    color: var(--text-secondary);
+}
+.selected-recipe-card { text-align: left; }
+.selected-recipe-card h4 { margin: 0; color: var(--text-primary); }
+.selected-recipe-card span { font-size: 0.9rem; color: var(--success-color); font-weight: 500; }
+
+.image-upload-wrapper { width: 100%; }
+#upload-placeholder { 
+    border: 2px dashed var(--border-color);
+    padding: 40px;
+    border-radius: 12px;
+    cursor: pointer; 
+    transition: all .2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#upload-placeholder:hover { border-color: var(--accent-primary); background: var(--bg-secondary); }
+#upload-placeholder svg { color: var(--accent-primary); width: 48px; height: 48px; margin-bottom: 10px; }
+#post-image-upload { display: none; }
+#image-cropper-container { width: 100%; height: 300px; background-color: var(--bg-secondary); border-radius: 8px; overflow: hidden; }
+
+#post-text {
+    width: 100%; min-height: 140px; padding: 15px; border-radius: 8px;
+    border: 1px solid var(--border-color); background: var(--bg-secondary);
+    color: var(--text-primary); font-size: 1rem; resize: vertical;
+    box-sizing: border-box; transition: border-color 0.2s, box-shadow 0.2s;
+}
+#post-text:focus { outline: none; border-color: var(--accent-primary); box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.2); }
+
+.wizard-footer {
+    padding: 20px 25px; border-top: 1px solid var(--border-color);
+    background: var(--bg-secondary); display: flex; justify-content: space-between;
+    flex-shrink: 0;
+}
+
+
+/* --- MODAL DE SELEÇÃO DE RECEITA --- */
+.select-recipe-modal .modal-content {
+    max-width: 600px; height: 80vh; max-height: 650px; padding: 0;
+    display: flex; flex-direction: column; background-color: var(--bg-primary);
+}
+.select-recipe-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 25px; background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+}
+.select-recipe-header h2 { font-size: 1.5rem; margin: 0; }
+.select-recipe-search { position: relative; padding: 15px 25px; background: var(--bg-secondary); border-bottom: 1px solid var(--border-color); }
+
+.select-recipe-search svg {
+    position: absolute;
+    left: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    width: 20px;
+    height: 20px;
+}
+
+#search-favorites-modal {
+    width: 100%; padding: 12px 18px 12px 45px; font-size: 1rem; border-radius: 25px;
+    border: 1px solid var(--border-color); box-sizing: border-box; background-color: var(--bg-primary);
+}
+#search-favorites-modal:focus { outline: none; border-color: var(--accent-primary); box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.2); }
+
+.favorites-list-container { overflow-y: auto; padding: 15px; flex-grow: 1; }
+.favorite-recipe-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 15px; border-bottom: 1px solid var(--border-color);
+    cursor: pointer; transition: background-color 0.2s; border-radius: 8px;
+}
+.favorite-recipe-item:hover { background-color: var(--bg-secondary); }
+.recipe-item-info h4 { margin: 0 0 5px; font-size: 1.1rem; }
+.recipe-item-info p { margin: 0; color: var(--text-secondary); font-size: 0.9rem; }
+.recipe-item-check {
+    width: 24px; height: 24px; border-radius: 50%; border: 2px solid var(--border-color);
+    display: flex; align-items: center; justify-content: center; transition: all 0.2s;
+}
+.recipe-item-check svg { width: 16px; height: 16px; fill: white; opacity: 0; transform: scale(0.5); transition: all 0.2s; }
+.favorite-recipe-item.selected { background-color: var(--bg-secondary); }
+.favorite-recipe-item.selected .recipe-item-check { background-color: var(--accent-primary); border-color: var(--accent-primary); }
+.favorite-recipe-item.selected .recipe-item-check svg { opacity: 1; transform: scale(1); }
+.select-recipe-footer { padding: 20px; background-color: var(--bg-secondary); text-align: right; border-top: 1px solid var(--border-color); }
+
+
+/* --- MODAL DE CONFIRMAÇÃO --- */
+.confirmation-modal-social {
+    position: fixed; inset: 0; z-index: 3000;
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px; box-sizing: border-box;
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s;
+}
+.confirmation-modal-social.is-open { opacity: 1; visibility: visible; }
+.confirmation-modal-social .modal-content {
+    position: relative; background: var(--bg-secondary);
+    padding: 30px; border-radius: 16px;
+    width: 100%; max-width: 400px; text-align: center;
+}
+.confirmation-modal-social .modal-icon { color: var(--error-color); margin-bottom: 15px; }
+.confirmation-modal-social .modal-icon svg { width: 48px; height: 48px; }
+.confirmation-modal-social h2 { margin-top: 0; }
+.confirmation-modal-social p { margin: 15px 0 25px; color: var(--text-secondary); }
+.confirmation-actions { display: flex; justify-content: center; gap: 15px; }
+
+
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 950px) {
+    .details-modal .modal-content {
+        overflow-y: auto;
+    }
+    .modal-body-grid { 
+        grid-template-columns: 1fr; 
+        display: block;
+        overflow: visible;
+    }
+    .main-content-panel, .sidebar-panel {
+        overflow-y: visible;
+        height: auto;
+        padding: 0;
+    }
+    .sidebar-panel { 
+        border-top: 1px solid var(--border-color); 
+        margin-top: 30px;
+        padding-top: 30px;
+    }
+}
+@media (max-width: 768px) {
+    .social-header { flex-direction: column; align-items: flex-start; }
+    .details-modal { padding: 0; }
+    .details-modal .modal-content { height: 100vh; max-height: 100vh; border-radius: 0; }
+    .modal-body-grid { padding: 20px; }
+    
+    .wizard-container, .select-recipe-modal .modal-content { height: 100vh; max-height: 100vh; border-radius: 0; }
+    .step-label { display: none; }
+    .step-connector { width: 20px; }
+    .wizard-content { padding: 15px; }
+}
+@media (max-width: 600px) {
+    .social-feed-grid { grid-template-columns: 1fr; }
+}
+
+/* --- Estilos Adicionais para o Wizard de Criação --- */
+.step1-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.btn-skip {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-weight: 600;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.btn-skip:hover {
+    color: var(--accent-primary);
+    background-color: var(--bg-primary);
+}
+
+/*
+ * =========================================================
+ * MODAL DE EDIÇÃO DE POST (REMAKE)
+ * ========================================================= 
+ */
+
+.edit-post-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 3000; /* Acima de outros modais */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s;
+}
+
+.edit-post-modal.is-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.edit-post-modal .edit-post-content {
+    position: relative;
+    background-color: var(--bg-secondary);
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 550px;
+    display: flex;
+    flex-direction: column;
+    max-height: 90vh;
+    transform: scale(0.95);
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    overflow: hidden; /* Garante que o conteúdo não vaze durante a animação */
+}
+
+.edit-post-modal.is-open .edit-post-content {
+    transform: scale(1);
+}
+
+.edit-post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+    border-bottom: 1px solid var(--border-color);
+    flex-shrink: 0;
+}
+
+.edit-post-header h2 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.edit-post-header .close-btn {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.edit-post-header .close-btn:hover {
+    color: var(--error-color);
+    transform: rotate(90deg);
+}
+
+.edit-post-body {
+    padding: 25px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.edit-post-body .form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.image-editor .cropper-wrapper {
+    width: 100%;
+    height: 300px;
+    background-color: var(--bg-primary);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    border: 1px solid var(--border-color);
+}
+
+.image-editor img {
+    max-width: 100%;
+    display: block;
+}
+
+.btn-block {
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+#edit-post-text {
+    width: 100%;
+    min-height: 120px;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 1rem;
+    resize: vertical;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#edit-post-text:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.2);
+}
+
+.edit-post-footer {
+    padding: 15px 25px;
+    border-top: 1px solid var(--border-color);
+    background: var(--bg-primary);
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    flex-shrink: 0;
+}
+
+.edit-post-footer .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-post-footer .btn .btn-spinner {
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-right: 8px;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Responsividade */
+@media (max-width: 600px) {
+    .edit-post-modal {
+        padding: 0;
+        align-items: flex-end;
+    }
+
+    .edit-post-content {
+        width: 100%;
+        max-width: 100%;
+        max-height: 95vh;
+        border-radius: 20px 20px 0 0;
+        transform: translateY(100%);
+    }
+
+    .edit-post-modal.is-open .edit-post-content {
+        transform: translateY(0);
+    }
+
+    .edit-post-body {
+        padding: 20px;
+    }
+    
+    .edit-post-footer {
+        padding: 15px;
+    }
+}

@@ -1,0 +1,62 @@
+/*
+ * =========================================
+ * ESTILOS DO SKELETON LOADER
+ * Componentes visuais para indicar carregamento de conteúdo.
+ * =========================================
+ */
+
+/* --- Card de Receita (Página de Favoritos) --- */
+.skeleton-card {
+    background-color: var(--bg-secondary);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px var(--shadow-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.skeleton-image {
+    width: 100%;
+    height: 200px;
+    background-color: var(--bg-primary);
+    animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.skeleton-content {
+    padding: 20px;
+}
+
+.skeleton-line {
+    height: 1.2rem;
+    border-radius: 4px;
+    background-color: var(--bg-primary);
+    margin-bottom: 12px;
+    animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.skeleton-line:last-child {
+    margin-bottom: 0;
+}
+
+.skeleton-line-short {
+    width: 60%;
+}
+
+/* --- Item do Grid (Página da Comunidade) --- */
+.skeleton-post-grid-item {
+    border-radius: 16px;
+    background-color: var(--bg-primary);
+    aspect-ratio: 1 / 1; /* Garante que sejam quadrados */
+    animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+
+/* --- Animação --- */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: .5;
+    }
+}
