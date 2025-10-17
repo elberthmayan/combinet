@@ -1,0 +1,775 @@
+/*
+ * =========================================
+ * ESTILOS DA PÁGINA DE LOGIN (VERSÃO COZINHA)
+ * =========================================
+ */
+
+/* =========================================
+ * CENÁRIO E TÍTULO
+ * =========================================
+ */
+.login-page-body {
+    background: #f0f2f5;
+    overflow: hidden;
+    margin: 0;
+    height: 100vh;
+}
+
+.kitchen-scene {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    perspective: 2000px;
+}
+
+.kitchen-wall {
+    flex-grow: 1;
+    background-color: #e8e4e0;
+    background-image: linear-gradient(rgba(0,0,0,0.02) 50%, transparent 50%);
+    background-size: 100% 4px;
+    position: relative;
+    z-index: 1;
+}
+
+.kitchen-floor {
+    height: 30vh;
+    background-color: #c4a788;
+    background-image: 
+        repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,0.05) 35px, rgba(255,255,255,0.05) 70px),
+        repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(255,255,255,0.05) 35px, rgba(255,255,255,0.05) 70px);
+    transform: rotateX(70deg) translateY(50px) scale(1.5);
+    box-shadow: inset 0 20px 30px -10px rgba(0,0,0,0.2);
+    z-index: 2;
+}
+
+.login-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Alinha a geladeira na base */
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+}
+
+.login-header {
+    position: absolute;
+    top: 5vh;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 10;
+}
+
+.login-brand-title {
+    font-family: 'Pacifico', cursive;
+    color: #e67e22;
+    font-size: 5rem;
+    margin: 0;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+}
+
+.login-brand-subtitle {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+
+/* =========================================
+ * DECORAÇÕES DA COZINHA (ATUALIZADO)
+ * =========================================
+ */
+.digital-clock {
+    position: absolute;
+    top: 15vh;
+    left: 10vw;
+    background-color: #2c3e50;
+    color: #e67e22;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 700;
+    font-size: 2.5rem;
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2), inset 0 0 5px rgba(0,0,0,0.5);
+    border: 2px solid #34495e;
+}
+
+.clock-separator {
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+.calendar-container {
+    position: absolute;
+    top: 15vh;
+    right: 10vw;
+    width: 120px;
+    background-color: #fdfdfd;
+    border-radius: 5px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    border: 1px solid #ddd;
+}
+
+.calendar-header {
+    background-color: #e74c3c;
+    color: white;
+    padding: 8px;
+    border-radius: 4px 4px 0 0;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.calendar-body {
+    padding: 10px;
+    font-size: 4rem;
+    font-weight: 700;
+    color: #333;
+    background-color: #fff;
+    border-radius: 0 0 4px 4px;
+    line-height: 1;
+}
+
+
+/* =========================================
+ * ESTILOS DA GELADEIRA (MODELO PREMIUM)
+ * =========================================
+ */
+.desktop-login {
+    position: absolute;
+    bottom: 10vh;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+}
+
+.scene {
+    width: 420px; /* Aumentado */
+    height: 520px; /* Aumentado */
+    perspective: 1500px;
+    transition: transform 0.7s ease-in-out, opacity 0.7s ease-in-out;
+}
+
+.scene.zoom-out {
+    transform: scale(3);
+    opacity: 0;
+}
+
+.fridge-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.fridge__body {
+    width: 100%;
+    height: 80%; /* Aumentado */
+    background: #d1d9e6; /* Cor interna padronizada */
+    position: absolute;
+    transform: translateZ(-25px); /* Um pouco mais de profundidade */
+    border-radius: 15px;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+}
+
+.fridge__door {
+    position: absolute;
+    width: 50%;
+    height: 80%; /* Ajustado */
+    top: 0;
+    transform-style: preserve-3d;
+    transition: transform 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    cursor: pointer;
+}
+
+.fridge__door--left {
+    left: 0;
+    transform-origin: left;
+}
+
+.fridge__door--right {
+    right: 0;
+    transform-origin: right;
+}
+
+.fridge__door--left.is-open {
+    transform: rotateY(-160deg);
+}
+
+.fridge__door--right.is-open {
+    transform: rotateY(160deg);
+}
+
+.fridge__face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px 0 0 15px;
+    /* ALTERAÇÃO: Efeito de aço escovado preto */
+    background: linear-gradient(to right, #333, #555, #333);
+    border: 1px solid #222;
+    box-shadow: 
+        inset 0 0 2px rgba(255,255,255,0.2),
+        5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.fridge__door--right .fridge__face {
+    border-radius: 0 15px 15px 0;
+}
+
+.fridge__face--back {
+    background-color: #ffffff; /* ALTERADO */
+    transform: rotateY(180deg);
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+}
+
+.fridge__handle {
+    width: 12px;
+    height: 120px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 6px;
+    /* ALTERAÇÃO: Puxador em tom de cinza mais escuro */
+    background: linear-gradient(to right, #777, #999, #777);
+    box-shadow: 
+        inset 0 0 2px rgba(0,0,0,0.3),
+        1px 1px 3px rgba(0,0,0,0.3);
+}
+
+.fridge__door--left .fridge__handle { right: 15px; }
+.fridge__door--right .fridge__handle { left: 15px; }
+
+/* Estilos dos ímãs */
+.magnet {
+    position: absolute;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease;
+    font-family: 'Poppins', sans-serif;
+}
+.magnet:hover {
+    transform: scale(1.1) rotate(-3deg);
+    z-index: 10;
+}
+.magnet--note {
+    top: 30px;
+    left: 25px;
+    width: 100px;
+    height: 80px;
+    background-color: #fffde7;
+    border: 1px solid #eee;
+    padding: 5px;
+    font-size: 12px;
+    transform: rotate(-5deg);
+    color: #555;
+    line-height: 1.4;
+}
+.magnet--combinet {
+    bottom: 40px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #e67e22;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Pacifico', cursive;
+    font-size: 28px;
+    transform: rotate(8deg);
+}
+.magnet--smiley {
+    top: 40px;
+    right: 30px;
+    width: 40px;
+    height: 40px;
+    background-color: #f1c40f;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    font-size: 20px;
+    transform: rotate(15deg);
+}
+
+
+.fridge__drawer {
+    position: absolute;
+    width: 100%;
+    height: 20%; /* Diminuído */
+    bottom: 0;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.drawer-facade {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /* ALTERAÇÃO: Efeito de aço escovado preto */
+    background: linear-gradient(to right, #2c2c2c, #4a4a4a, #2c2c2c);
+    border: 1px solid #222;
+    border-radius: 15px;
+    box-shadow: 
+        inset 0 1px 2px rgba(255,255,255,0.2),
+        5px 5px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.8s ease;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.drawer-content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #ffffff; /* ALTERADO */
+    border-radius: 15px;
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.fridge__drawer.is-open .drawer-facade {
+    transform: translateY(100px);
+}
+
+.fridge__drawer-handle {
+    width: 120px;
+    height: 12px;
+    border-radius: 6px;
+    /* ALTERAÇÃO: Puxador em tom de cinza mais escuro */
+    background: linear-gradient(to right, #777, #999, #777);
+    box-shadow: 
+        inset 0 0 2px rgba(0,0,0,0.3),
+        1px 1px 3px rgba(0,0,0,0.3);
+}
+
+/* =========================================
+ * ESTILOS DO FORMULÁRIO DESKTOP
+ * =========================================
+ */
+.form-container {
+    width: 100%;
+    text-align: center;
+}
+.form-container h2 { margin-top: 0; margin-bottom: 20px; color: #333; font-size: 1.8rem; }
+.form-container form { display: flex; flex-direction: column; gap: 15px; }
+.form-container input { padding: 14px; border: 1px solid #c8d0e7; border-radius: 8px; background-color: #f0f2f5; box-shadow: none; font-size: 1rem; outline: none; transition: all 0.2s; } /* ALTERADO */
+.form-container button { padding: 14px; border: none; border-radius: 8px; background-color: #4a90e2; color: white; font-weight: bold; font-size: 1rem; cursor: pointer; transition: background-color 0.3s ease, transform 0.2s; box-shadow: 2px 2px 5px rgba(0,0,0,0.1); }
+.form-container button:hover { background-color: #357abd; }
+
+
+.forgot-password-link {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: #4a90e2;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.forgot-password-link:hover {
+    color: #357abd;
+    text-decoration: underline;
+}
+
+/* =========================================
+ * ESTILOS DO LOGIN MOBILE (APRIMORADO)
+ * =========================================
+ */
+.mobile-login {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 20;
+}
+.mobile-card {
+    background-color: #ffffff;
+    padding: 30px 25px;
+    border-radius: 24px;
+    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 380px;
+    text-align: center;
+    border: none;
+    /* Animação de entrada foi movida para a keyframe */
+}
+
+
+.mobile-brand {
+    font-family: 'Pacifico', cursive;
+    color: #e67e22;
+    font-size: 2.8rem;
+    margin: 0 0 10px 0;
+    text-shadow: 2px 2px 8px rgba(230, 126, 34, 0.2);
+}
+
+.mobile-subtitle {
+    margin: 0 0 30px 0;
+    color: #606770;
+}
+
+.mobile-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.mobile-card input {
+    padding: 14px;
+    border: 2px solid #f3f5f9;
+    border-radius: 12px;
+    background-color: #f3f5f9;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.mobile-card button[type="submit"] {
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background-color: #e67e22;
+    background-image: linear-gradient(to right, #f09819 0%, #e67e22 100%);
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(230, 126, 34, 0.3);
+}
+
+.mobile-forgot-password {
+    display: block;
+    margin: 15px 0;
+    font-size: 14px;
+    color: #4a90e2; /* ALTERADO DE VOLTA PARA AZUL */
+    text-decoration: none;
+    font-weight: 500;
+}
+.mobile-forgot-password:hover {
+    color: #357abd; /* ADICIONADO HOVER CONSISTENTE */
+    text-decoration: underline;
+}
+
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #aaa;
+    margin: 20px 0;
+}
+.separator::before, .separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #ddd;
+}
+.separator:not(:empty)::before { margin-right: .25em; }
+.separator:not(:empty)::after { margin-left: .25em; }
+
+.google-login-btn {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: all 0.2s ease-in-out;
+    color: #333;
+    width: 100%;
+    box-sizing: border-box;
+}
+.google-login-btn:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-color: #ccc;
+    transform: translateY(-2px);
+}
+.google-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.switch-form {
+    margin-top: 25px;
+    font-size: 14px;
+    color: #606770;
+}
+.switch-form a {
+    color: #e67e22;
+    font-weight: 600;
+    text-decoration: none;
+}
+.switch-form a:hover {
+    text-decoration: underline;
+}
+
+/* ===================================================================
+ * CONTROLE DE VISIBILIDADE E RESPONSIVIDADE
+ * ===================================================================
+ */
+/* Por padrão, esconde a versão mobile e mostra a de desktop */
+.mobile-login {
+    display: none;
+}
+.desktop-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Em telas de 700px ou menos, inverte a visibilidade e muda o fundo do body */
+@media (max-width: 700px) {
+    .kitchen-scene {
+        display: none;
+    }
+    .login-container {
+        /* ALTERAÇÃO: Usando grid para uma centralização mais robusta */
+        display: grid;
+        place-items: center;
+        background: #f0f2f5;
+    }
+    .desktop-login, .login-header {
+        display: none;
+    }
+    .mobile-login {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+}
+
+
+/* =========================================
+ * MODAL "ESQUECI MINHA SENHA"
+ * =========================================
+ */
+.forgot-password-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s;
+}
+
+.forgot-password-modal.is-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.forgot-password-modal .modal-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    cursor: pointer;
+}
+
+.forgot-password-modal .modal-content {
+    position: relative;
+    background-color: #ffffff;
+    color: #1c1e21;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+.dark-theme .forgot-password-modal .modal-content {
+    background-color: #242526;
+    color: #e4e6eb;
+}
+
+.forgot-password-modal.is-open .modal-content {
+    transform: scale(1);
+}
+
+.forgot-password-modal .modal-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.dark-theme .forgot-password-modal .modal-close-btn {
+    color: #b0b3b8;
+}
+
+.forgot-password-modal .modal-close-btn:hover {
+    color: #e67e22;
+    transform: rotate(90deg);
+}
+
+.forgot-password-modal h2 {
+    margin: 0 0 15px 0;
+    font-size: 1.8rem;
+}
+
+.forgot-password-modal p {
+    margin: 0 0 25px 0;
+    color: #606770;
+    line-height: 1.5;
+}
+
+.dark-theme .forgot-password-modal p {
+    color: #b0b3b8;
+}
+
+.forgot-password-modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.forgot-password-modal input {
+    padding: 14px;
+    border: 2px solid #f3f5f9;
+    border-radius: 12px;
+    background-color: #f3f5f9;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.dark-theme .forgot-password-modal input {
+    border-color: #393a3b;
+    background-color: #18191a;
+    color: #e4e6eb;
+}
+
+.forgot-password-modal input:focus {
+    border-color: #e67e22;
+}
+
+.forgot-password-modal button {
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background-color: #e67e22;
+    background-image: linear-gradient(to right, #f09819 0%, #e67e22 100%);
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(230, 126, 34, 0.3);
+}
+
+.forgot-password-modal button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 20px rgba(230, 126, 34, 0.4);
+}
+
+/* === SUGESTÕES APLICADAS === */
+
+/* Animação de entrada para os cards mobile */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.mobile-card {
+    /* Adiciona a animação de entrada */
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Foco mais visível e moderno para os inputs */
+.mobile-card input:focus,
+.form-container input:focus {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.25); /* Glow suave */
+}
+
+/* Efeito de clique mais responsivo nos botões */
+.mobile-card button[type="submit"],
+.form-container button {
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.mobile-card button[type="submit"]:active,
+.form-container button:active {
+    transform: scale(0.98); /* Efeito de clique */
+}
+
+/* Estilos para o link de visitante */
+.guest-login-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #555;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.guest-login-link:hover {
+    color: #e67e22;
+    text-decoration: underline;
+}
+
+.desktop-login .guest-login-link {
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
+
+.mobile-login .guest-login-link {
+    margin-top: 20px;
+    color: #606770;
+}

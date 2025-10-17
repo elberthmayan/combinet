@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem-vindo ao Combinet!</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- ATUALIZAÇÃO: Adicionado versionamento para forçar a limpeza de cache -->
+    <link rel="stylesheet" href="./css/global.css?v=1.0.2">
+    <link rel="stylesheet" href="./css/main.css?v=1.0.2">
+    <link rel="stylesheet" href="./css/login.css?v=1.0.2">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600;700&family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
+</head>
+<body class="login-page-body">
+
+    <div class="kitchen-scene">
+        <div class="kitchen-wall">
+            <div class="digital-clock">
+                <span id="clock-hours">00</span><span class="clock-separator">:</span><span id="clock-minutes">00</span>
+            </div>
+            <div class="calendar-container">
+                <div class="calendar-header">
+                    <span id="calendar-month-year"></span>
+                </div>
+                <div class="calendar-body">
+                    <span id="calendar-day"></span>
+                </div>
+            </div>
+            <div class="plant-container">
+                <div class="plant">
+                    <div class="pot"></div>
+                    <div class="leaves"></div>
+                </div>
+            </div>
+        </div>
+        <div class="kitchen-floor"></div>
+    </div>
+    
+    <div class="login-container">
+        <div class="login-header">
+            <h1 class="login-brand-title">Combinet</h1>
+            <p class="login-brand-subtitle">Descubra novas receitas, compartilhe suas criações.</p>
+        </div>
+
+        <!-- Login Desktop -->
+        <div class="desktop-login">
+            <div class="scene">
+                <div class="fridge-container">
+                    
+                    <div class="fridge__body"></div>
+                    <div class="fridge__door fridge__door--left">
+                        <div class="fridge__face fridge__face--front">
+                            <div class="fridge__handle" title="Abrir para Login"></div>
+                            <div class="magnet magnet--note">
+                                <strong>Lista:</strong><br>
+                                - Ovos<br>
+                                - Leite<br>
+                                - Farinha
+                            </div>
+                        </div>
+                        <div class="fridge__face fridge__face--back">
+                            <div class="form-container">
+                                <h2>Login</h2>
+                                <form id="desktop-login-form">
+                                    <input type="email" placeholder="Email" required>
+                                    <input type="password" placeholder="Senha" required>
+                                    <button type="submit">Entrar</button>
+                                    <a href="#" class="forgot-password-link">Esqueci minha senha</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fridge__door fridge__door--right">
+                        <div class="fridge__face fridge__face--front">
+                            <div class="fridge__handle" title="Abrir para Registrar"></div>
+                        </div>
+                        <div class="fridge__face fridge__face--back">
+                            <div class="form-container">
+                                 <h2>Registro</h2>
+                                 <form id="desktop-register-form">
+                                    <input type="text" placeholder="Nome" required>
+                                    <input type="email" placeholder="Email" required>
+                                    <input type="password" placeholder="Senha" required>
+                                    <button type="submit">Criar Conta</button>
+                                 </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fridge__drawer">
+                        <div class="drawer-content">
+                            <button class="google-login-btn">
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="google-icon"><g><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path><path fill="none" d="M0 0h48v48H0z"></path></g></svg>
+                                Logar com Google
+                            </button>
+                        </div>
+                        <div class="drawer-facade" title="Outras opções de login"><div class="fridge__drawer-handle"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Login Mobile -->
+        <div class="mobile-login">
+            <div class="mobile-card" id="mobile-login-card">
+                <h1 class="mobile-brand">Combinet</h1>
+                <p class="mobile-subtitle">Faça login para continuar</p>
+                <form id="mobile-login-form">
+                    <input type="email" placeholder="Email" required>
+                    <input type="password" placeholder="Senha" required>
+                    <button type="submit">Entrar</button>
+                </form>
+                <a href="#" class="forgot-password-link mobile-forgot-password">Esqueci minha senha</a>
+                <div class="separator">ou</div>
+                <button class="google-login-btn">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="google-icon"><g><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path><path fill="none" d="M0 0h48v48H0z"></path></g></svg>
+                    Logar com Google
+                </button>
+                <p class="switch-form">Não tem uma conta? <a href="#" id="show-register-link">Registre-se</a></p>
+            </div>
+
+            <div class="mobile-card" id="mobile-register-card" style="display: none;">
+                <h1 class="mobile-brand">Combinet</h1>
+                <p class="mobile-subtitle">Crie sua conta</p>
+                <form id="mobile-register-form">
+                   <input type="text" placeholder="Nome" required>
+                   <input type="email" placeholder="Email" required>
+                   <input type="password" placeholder="Senha" required>
+                   <button type="submit">Criar Conta</button>
+                </form>
+                <p class="switch-form">Já tem uma conta? <a href="#" id="show-login-link">Faça Login</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="forgot-password-modal" id="forgot-password-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close-btn">&times;</button>
+            <h2>Recuperar Senha</h2>
+            <p>Digite seu email abaixo e enviaremos um link para você criar uma nova senha.</p>
+            <form id="forgot-password-form">
+                <input type="email" id="recovery-email-input" placeholder="Seu email de cadastro" required>
+                <button type="submit">Enviar Link de Recuperação</button>
+            </form>
+        </div>
+    </div>
+    <div id="toast-container"></div>
+    
+    <!-- ATUALIZAÇÃO: Adicionado versionamento para forçar a limpeza de cache -->
+    <script type="module" src="./js/login.js?v=1.0.2"></script>
+    
+</body>
+</html>

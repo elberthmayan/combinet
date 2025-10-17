@@ -1,0 +1,540 @@
+/*
+ * =========================================
+ * PROFILE 3.0 - REMAKE COMPLETO (CSS)
+ * =========================================
+ */
+
+/* --- Estrutura e Layout Principal --- */
+.profile-page-container {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 30px;
+    max-width: 1400px;
+    margin: 20px auto;
+    padding: 0 20px;
+    align-items: flex-start;
+}
+
+/* --- Sidebar de Navegação --- */
+.profile-sidebar {
+    position: sticky;
+    top: 80px; /* Abaixo do header fixo */
+    background-color: var(--bg-secondary);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 8px 30px -10px var(--shadow-color);
+    border: 1px solid var(--border-color);
+}
+
+.sidebar-header {
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 15px;
+}
+
+.sidebar-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid var(--accent-primary);
+    margin-bottom: 15px;
+    object-fit: cover;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.sidebar-header h3 {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+    word-break: break-word;
+}
+
+.sidebar-title {
+    margin: 4px 0 0;
+    font-size: 0.9rem;
+    color: var(--accent-primary);
+    font-weight: 500;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.sidebar-nav .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-weight: 500;
+    transition: all 0.25s ease;
+}
+
+.sidebar-nav .nav-item svg {
+    width: 22px;
+    height: 22px;
+}
+
+.sidebar-nav .nav-item:hover {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transform: translateX(4px);
+}
+
+.sidebar-nav .nav-item.active {
+    background-color: var(--accent-primary);
+    color: white;
+    box-shadow: 0 4px 15px -2px rgba(230, 126, 34, 0.4);
+    transform: translateX(0);
+}
+
+/* --- Área de Conteúdo Principal --- */
+.profile-content-area {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    min-width: 0;
+}
+
+.settings-card {
+    background-color: var(--bg-secondary);
+    border-radius: 16px;
+    box-shadow: 0 8px 30px -10px var(--shadow-color);
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+.card-header {
+    padding: 25px 30px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.card-header h2 {
+    margin: 0 0 5px 0;
+    font-size: 1.6rem;
+}
+
+.card-header p {
+    margin: 0;
+    color: var(--text-secondary);
+}
+
+.card-body {
+    padding: 30px;
+}
+
+.card-footer {
+    padding: 20px 30px;
+    background-color: var(--bg-primary);
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: flex-end;
+}
+.card-footer .btn {
+    min-width: 160px;
+    justify-content: center;
+}
+
+/* --- Estilos de Formulário --- */
+.form-group {
+    margin-bottom: 20px;
+}
+.form-group:last-child {
+    margin-bottom: 0;
+}
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    box-sizing: border-box;
+    transition: all 0.2s;
+}
+.form-group input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.2);
+}
+.form-group input:disabled {
+    background-color: var(--border-color);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.profile-form-grid {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.avatar-uploader-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.avatar-uploader {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    cursor: pointer;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.avatar-uploader img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+.uploader-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.avatar-uploader:hover .uploader-overlay {
+    opacity: 1;
+}
+.avatar-uploader:hover img {
+    transform: scale(1.05);
+}
+
+/* --- Seções de Posts (Meus e Salvos) --- */
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 15px;
+}
+.post-grid-item {
+    position: relative;
+    cursor: pointer;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px -5px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    aspect-ratio: 1 / 1;
+}
+.post-grid-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px -8px var(--shadow-color);
+}
+.post-grid-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.post-grid-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 15px 10px 10px;
+    color: white;
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-shadow: 0 1px 3px #000;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+}
+
+/* --- Seção de Conquistas --- */
+.achievements-showcase {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
+}
+.achievement-item {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-primary);
+    border: 2px solid var(--border-color);
+    transition: all 0.2s;
+}
+.achievement-icon {
+    font-size: 2.2rem;
+}
+.achievement-item.unlocked {
+    border-color: #ffd700;
+    background: linear-gradient(135deg, #fef08a, #facc15);
+    box-shadow: 0 0 15px rgba(250, 204, 21, 0.5);
+}
+.achievement-item.more {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-style: dashed;
+}
+.achievement-item.more:hover {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+}
+
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 15px;
+}
+.achievement-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 12px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+}
+.achievement-card-icon {
+    font-size: 2.5rem;
+    filter: grayscale(100%);
+    opacity: 0.5;
+    transform: scale(0.9);
+    transition: all 0.3s;
+}
+.achievement-card-info h4 {
+    margin: 0 0 4px;
+    font-size: 1.1rem;
+}
+.achievement-card-info p {
+    margin: 0;
+    color: var(--text-secondary);
+}
+.achievement-card.locked {
+    opacity: 0.7;
+}
+.achievement-card.unlocked {
+    background: #fffbef;
+    border-color: #fef08a;
+}
+body.dark-theme .achievement-card.unlocked {
+    background: #423d22;
+    border-color: #a18a0a;
+}
+.achievement-card.unlocked .achievement-card-icon {
+    filter: grayscale(0%);
+    transform: scale(1);
+    opacity: 1;
+}
+.achievement-unlocked-badge {
+    margin-left: auto;
+    color: var(--success-color);
+}
+.achievement-unlocked-badge svg {
+    width: 28px; height: 28px;
+}
+
+
+/* --- Zona de Perigo e Botões --- */
+.danger-zone {
+    border: 2px solid var(--error-color);
+}
+.danger-zone .card-header {
+    border-color: var(--error-color);
+}
+.danger-zone .card-header h2 {
+    color: var(--error-color);
+}
+.danger-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.btn-danger {
+    background-color: var(--error-color);
+}
+.btn-danger:hover {
+    background-color: #c0392b;
+}
+
+/* --- Modais (Cropper e Confirmação) --- */
+.cropper-modal, .confirmation-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+.cropper-modal.active, .confirmation-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+.modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(8px);
+}
+.modal-content {
+    position: relative;
+    background-color: var(--bg-secondary);
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 500px;
+    overflow: hidden;
+    animation: modal-pop-in 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.cropper-container {
+    height: 400px;
+    background-color: var(--bg-primary);
+}
+#cropper-image {
+    display: block;
+    max-width: 100%;
+}
+.modal-content h2, .modal-content h3 {
+    margin: 0 0 15px 0;
+}
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    padding: 15px 25px;
+    background-color: var(--bg-primary);
+    border-top: 1px solid var(--border-color);
+}
+.confirmation-content {
+    padding: 30px;
+    text-align: center;
+}
+.confirmation-content input {
+    margin-top: 15px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    text-align: center;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+.confirmation-content input:focus {
+    outline: none;
+    border-color: var(--error-color);
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.2);
+}
+
+@keyframes modal-pop-in {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+.progress-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+}
+
+/* --- Utilitários --- */
+.fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.empty-message {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-secondary);
+}
+.empty-message.small {
+    padding: 10px;
+}
+.btn-spinner {
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* --- Responsividade --- */
+@media (max-width: 950px) {
+    .profile-page-container {
+        grid-template-columns: 1fr;
+    }
+    .profile-sidebar {
+        position: static;
+        width: auto;
+    }
+    .sidebar-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .profile-page-container {
+        padding: 0 15px;
+    }
+    .profile-form-grid {
+        grid-template-columns: 1fr;
+    }
+    .avatar-uploader-container {
+        align-self: center;
+    }
+    .card-footer, .danger-content {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .card-footer .btn {
+        width: 100%;
+    }
+    .card-header, .card-body {
+        padding: 20px;
+    }
+}
